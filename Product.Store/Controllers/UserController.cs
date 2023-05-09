@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using ProductStore.Domain.Models;
 using ProductStore.Domain.Services;
+using ProductStore.Resources;
 using ProductStore.Util.Responses;
 
 namespace ProductStore.Controllers
@@ -36,9 +36,9 @@ namespace ProductStore.Controllers
 
         [HttpPost]
         [Route("Login")]
-        public async Task<ActionResult> Login(string email, string password)
+        public async Task<ActionResult> Login(UserResource userResource)
         {
-            UserResponse userResponse = await _userService.Login(email, password);
+            UserResponse userResponse = await _userService.Login(userResource.Email, userResource.Password);
 
             if (userResponse.Sucess)
             {
@@ -50,7 +50,7 @@ namespace ProductStore.Controllers
             }
         }
 
-        [Authorize]
+        [Authorize()]
         [HttpDelete]
         [Route("CloseAccount")]
         public async Task<ActionResult> DeleteUser(long userId)

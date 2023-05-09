@@ -6,7 +6,6 @@ using ProductStore.Domain.Repository;
 
 namespace ProductStore.Controllers
 {
-    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class SaleController : ControllerBase
@@ -18,8 +17,9 @@ namespace ProductStore.Controllers
              _saleRepository = saleRepository;
         }
 
-        [Authorize]
+        [Authorize()]
         [HttpGet]
+        [Route("GetSales")]
         public async Task<ActionResult> GetAllSales() 
         {
             if (_saleRepository == null)

@@ -1,6 +1,8 @@
-﻿namespace ProductStore.Services
+﻿using ProductStore.Domain.Services;
+
+namespace ProductStore.Services
 {
-    public class SaleService
+    public class SaleService : ISaleService
     {
     }
 }
